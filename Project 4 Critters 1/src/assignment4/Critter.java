@@ -25,7 +25,7 @@ public abstract class Critter {
 	private	static List<Critter> population = new java.util.ArrayList<Critter>();
 	private static List<Critter> babies = new java.util.ArrayList<Critter>();
 
-	// Gets the package name.  This assumes that Critter and its subclasses are all in the same package.
+	// Gets the package name. This assumes that Critter and its subclasses are all in the same package.
 	static {
 		myPackage = Critter.class.getPackage().toString().split(" ")[1];
 	}
@@ -73,6 +73,19 @@ public abstract class Critter {
 	 * @throws InvalidCritterException
 	 */
 	public static void makeCritter(String critter_class_name) throws InvalidCritterException {
+		try {
+			Critter temp = (Critter) Class.forName(critter_class_name).newInstance();
+			temp.energy = Params.start_energy;
+			temp.x_coord = getRandomInt(Params.world_width);
+			temp.y_coord = getRandomInt(Params.world_height);
+			population.add(temp);
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -81,10 +94,8 @@ public abstract class Critter {
 	 * @return List of Critters.
 	 * @throws InvalidCritterException
 	 */
-	public static List<Critter> getInstances(String critter_class_name) throws InvalidCritterException {
-		List<Critter> result = new java.util.ArrayList<Critter>();
-	
-		return result;
+	public static List<Critter> getInstances(String critter_class_name) {
+
 	}
 	
 	/**
@@ -170,6 +181,8 @@ public abstract class Critter {
 	}
 	
 	public static void worldTimeStep() {
+		for(Critter a: population) a.doTimeStep();
+
 	}
 	
 	public static void displayWorld() {}
