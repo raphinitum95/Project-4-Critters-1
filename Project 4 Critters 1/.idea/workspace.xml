@@ -24,10 +24,10 @@
       <file leaf-file-name="Critter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/assignment4/Critter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="183" column="50" selection-start-line="183" selection-start-column="50" selection-end-line="183" selection-end-column="50" />
+            <state relative-caret-position="255">
+              <caret line="123" column="40" selection-start-line="123" selection-start-column="38" selection-end-line="123" selection-end-column="40" />
               <folding>
-                <element signature="e#0#5860#0" expanded="true" />
+                <element signature="e#0#7179#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -577,10 +577,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment4/Critter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="183" column="50" selection-start-line="183" selection-start-column="50" selection-end-line="183" selection-end-column="50" />
+        <state relative-caret-position="255">
+          <caret line="123" column="40" selection-start-line="123" selection-start-column="38" selection-end-line="123" selection-end-column="40" />
           <folding>
-            <element signature="e#0#5860#0" expanded="true" />
+            <element signature="e#0#7179#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -24,6 +24,7 @@ public abstract class Critter {
 	private static String myPackage;
 	private	static List<Critter> population = new java.util.ArrayList<Critter>();
 	private static List<Critter> babies = new java.util.ArrayList<Critter>();
+	private boolean moved = false;
 
 	// Gets the package name. This assumes that Critter and its subclasses are all in the same package.
 	static {
@@ -50,10 +51,40 @@ public abstract class Critter {
 	private int y_coord;
 	
 	protected final void walk(int direction) {
+		if(!moved) move(direction, 1);
+		energy = energy - Params.walk_energy_cost;
+		moved = true;
 	}
 	
 	protected final void run(int direction) {
-		
+		if(!moved) move(direction, 2);
+		energy = energy - Params.run_energy_cost;
+		moved = true;
+	}
+
+	private void move(int direction, int steps){
+		for(int i = 0; i < steps; i ++) {
+			if (direction == 0) x_coord++;
+			if (direction == 1) {
+				x_coord++;
+				y_coord--;
+			}
+			if (direction == 2) y_coord--;
+			if (direction == 3) {
+				x_coord--;
+				y_coord--;
+			}
+			if (direction == 4) x_coord--;
+			if (direction == 5) {
+				x_coord--;
+				y_coord++;
+			}
+			if (direction == 6) y_coord++;
+			if (direction == 7) {
+				x_coord++;
+				y_coord++;
+			}
+		}
 	}
 	
 	protected final void reproduce(Critter offspring, int direction) {
@@ -182,6 +213,25 @@ public abstract class Critter {
 	
 	public static void worldTimeStep() {
 		for(Critter a: population) a.doTimeStep();
+		for(int i = 0; i < population.size(); i++){
+			Critter a = population.get(i);
+			for(Critter b: population) {
+				int a_roll = 0;
+				int b_roll = 0;
+				boolean first;
+				boolean second;
+				if (a.x_coord == b.x_coord && a.y_coord == b.y_coord && a != b) {
+					first = a.fight(b.toString());
+					second = b.fight(a.toString());
+					if (a.x_coord == b.x_coord && a.y_coord == b.y_coord) {
+						if (first) a_roll = a.getRandomInt(a.energy);
+						if (second) b_roll = b.getRandomInt(b.energy);
+						if (a_roll >= b_roll) a.energy = a.energy + (b.energy / 2);
+						else b.energy = b.energy + (a.energy / 2);
+					}
+				}
+			}
+		}
 
 	}
 	
