@@ -24,11 +24,22 @@
       <file leaf-file-name="Critter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/assignment4/Critter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="123" column="40" selection-start-line="123" selection-start-column="38" selection-end-line="123" selection-end-column="40" />
+            <state relative-caret-position="547">
+              <caret line="281" column="12" selection-start-line="281" selection-start-column="12" selection-end-line="281" selection-end-column="12" />
               <folding>
-                <element signature="e#0#7179#0" expanded="true" />
+                <element signature="e#0#8352#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/assignment4/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="487">
+              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -53,10 +64,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/assignment4/Main.java" />
         <option value="$PROJECT_DIR$/test/MyCritter2.java" />
         <option value="$PROJECT_DIR$/test/JunitTestMyCritterSample1.java" />
         <option value="$PROJECT_DIR$/src/assignment4/JunitTestMyCritterSample1.java" />
+        <option value="$PROJECT_DIR$/src/assignment4/Main.java" />
         <option value="$PROJECT_DIR$/src/assignment4/Critter.java" />
       </list>
     </option>
@@ -139,6 +150,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Johnny 422c/Project-4-Critters-1/Project 4 Critters 1" />
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -503,14 +515,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignment4/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="71" column="20" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment4/Algae.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -575,12 +579,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment4/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment4/Critter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="123" column="40" selection-start-line="123" selection-start-column="38" selection-end-line="123" selection-end-column="40" />
+        <state relative-caret-position="547">
+          <caret line="281" column="12" selection-start-line="281" selection-start-column="12" selection-end-line="281" selection-end-column="12" />
           <folding>
-            <element signature="e#0#7179#0" expanded="true" />
+            <element signature="e#0#8352#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
