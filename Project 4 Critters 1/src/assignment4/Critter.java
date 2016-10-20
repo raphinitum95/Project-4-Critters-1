@@ -13,6 +13,7 @@
 package assignment4;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /* see the PDF for descriptions of the methods and fields in this class
@@ -27,6 +28,7 @@ public abstract class Critter {
 	private static List<Critter> babies = new java.util.ArrayList<Critter>();
 	private boolean moved; //check this functionallity later
 	private static int [][] grid = new int[Params.world_width][Params.world_height];
+	private static String [][] world;
 
 	// Gets the package name. This assumes that Critter and its subclasses are all in the same package.
 	static {
@@ -95,6 +97,9 @@ public abstract class Critter {
 				y_coord++;
 			}
 		}
+
+		Critter a = new Craig();
+		a.reproduce(new Craig(), 0);
 	}
 
 	protected final void reproduce(Critter offspring, int direction) {
@@ -276,14 +281,29 @@ public abstract class Critter {
 	}
 
 	public static void displayWorld() {
-		diplayRow();
-		for(int j = 0; j < Params.world_height; j++){
-			System.out.print("|");
-			
+		world = new String[Params.world_width + 2][Params.world_height];
+		displayRow();
+		for(Critter a: population){
+			world[a.x_coord][a.y_coord] = a.toString();
 		}
+		for(int i = 0; i < Params.world_height; i++){
+			world[0][i] = "|";
+			world[Params.world_width + 1][i] = "|";
+
+			for(int k = 0; k < Params.world_width + 2; k++){
+				if(world[k][i] == null){
+					System.out.print(" ");
+				} else {
+					System.out.print(world[k][i]);
+				}
+			}
+			System.out.println();
+		}
+		displayRow();
+
 	}
 
-	private static void diplayRow(){
+	private static void displayRow(){
 		System.out.print("+");
 		for(int i = 0; i < Params.world_width; i++) System.out.print("-");
 		System.out.print("+");
