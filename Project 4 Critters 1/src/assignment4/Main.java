@@ -11,6 +11,8 @@
  * Fall 2016
  */
 package assignment4; // cannot be in default package
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.io.*;
 
@@ -28,6 +30,7 @@ public class Main {
     private static String myPackage;	// package of Critter file.  Critter cannot be in default pkg.
     private static boolean DEBUG = false; // Use it or not, as you wish!
     static PrintStream old = System.out;	// if you want to restore output to console
+    private static String input;
 
 
     // Gets the package name.  The usage assumes that Critter and its subclasses are all in the same package.
@@ -70,6 +73,64 @@ public class Main {
         /* Write your code below. */
 
         System.out.println("GLHF");
+
+        System.out.print("critters> ");
+
+        int number = 0;
+        input = kb.nextLine();
+        String [] split = input.split("\\s+");
+
+        while(true){
+
+            if(split[0].equals("quit")) break;
+
+            else if(split[0].equals("show")) {
+                if(split.length == 1){
+                    Critter.displayWorld();
+                }
+                else{
+                    System.out.println("invalid command: " + input);
+                }
+            }
+
+            else if(split[0].equals("step")){
+                if(split.length == 2){
+                    try {
+                        number = Integer.parseInt(split[1]);
+                        while(number != 0) {
+                            Critter.worldTimeStep();
+                            number--;
+                        }
+                    } catch (NumberFormatException e){
+                        System.out.println("error processing: " + input);
+                    }
+                } else if(split.length > 2){
+                    System.out.println("invalid command: " + input);
+                } else{
+                    Critter.worldTimeStep();
+                }
+            }
+
+            else if(split[0].equals("seed")){
+                if(split.length == 2){
+                    try{
+                        Critter.setSeed(Integer.parseInt(split[1]));
+                    } catch(NumberFormatException e){
+                        System.out.println("error processing: " + input);
+                    }
+                } else{
+                    System.out.println("invalid command: " + input);
+                }
+            }
+
+
+
+
+            System.out.print("critters> ");
+            input = kb.nextLine();
+            split = input.split("\\s+");
+
+        }
 
         /* Write your code above */
         System.out.flush();

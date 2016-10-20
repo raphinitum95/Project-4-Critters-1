@@ -26,7 +26,7 @@ public abstract class Critter {
 	private static String myPackage;
 	private	static List<Critter> population = new java.util.ArrayList<Critter>();
 	private static List<Critter> babies = new java.util.ArrayList<Critter>();
-	private boolean moved; //check this functionallity later
+	private boolean moved = false; //check this functionallity later
 	private static int [][] grid = new int[Params.world_width][Params.world_height];
 	private static String [][] world;
 
@@ -98,8 +98,11 @@ public abstract class Critter {
 			}
 		}
 
-		Critter a = new Craig();
-		a.reproduce(new Craig(), 0);
+		if(x_coord < 0) x_coord += Params.world_width;
+		if(x_coord > Params.world_width - 1) x_coord -= Params.world_width;
+		if(y_coord < 0) y_coord += Params.world_height;
+		if(y_coord > Params.world_height - 1) y_coord -= Params.world_height;
+
 	}
 
 	protected final void reproduce(Critter offspring, int direction) {
@@ -139,7 +142,7 @@ public abstract class Critter {
 	 */
 	public static void makeCritter(String critter_class_name) throws InvalidCritterException {
 		try {
-			Critter temp = (Critter) Class.forName(critter_class_name).newInstance();
+			Critter temp = (Critter) Class.forName(myPackage + "." + critter_class_name).newInstance();
 			temp.energy = Params.start_energy;
 			temp.x_coord = getRandomInt(Params.world_width);
 			temp.y_coord = getRandomInt(Params.world_height);
@@ -270,7 +273,10 @@ public abstract class Critter {
 				}
 			}
 		}
-		population.addAll(babies);
+		for(Critter baby: babies){
+			if(!population.contains(baby))
+				population.add(baby);
+		}
 		removeDead();
 
 
@@ -284,8 +290,14 @@ public abstract class Critter {
 		if (a.x_coord == b.x_coord && a.y_coord == b.y_coord) {
 			if (first) a_roll = a.getRandomInt(a.energy);
 			if (second) b_roll = b.getRandomInt(b.energy);
-			if (a_roll >= b_roll) a.energy = a.energy + (b.energy / 2);
-			else b.energy = b.energy + (a.energy / 2);
+			if (a_roll >= b_roll) {
+				a.energy = a.energy + (b.energy / 2);
+				b.energy = 0;
+			}
+			else {
+				b.energy = b.energy + (a.energy / 2);
+				a.energy = 0;
+			}
 		}
 	}
 
