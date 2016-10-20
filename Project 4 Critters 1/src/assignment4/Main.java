@@ -123,6 +123,43 @@ public class Main {
                 }
             }
 
+            else if(split[0].equals("make")){
+                if(split.length == 2){
+                    Critter.makeCritter(split[1]);
+                }
+                else if(split.length == 3){
+                    try{
+                        number = Integer.parseInt(split[2]);
+                        for(int i = 0; i < number; i++){
+                            Critter.makeCritter(split[1]);
+                        }
+                    } catch (NumberFormatException e){
+                        System.out.println("error processing: " + input);
+                    }
+                } else{
+                    System.out.println("invalid command: " + input);
+                }
+
+            }
+
+            else if(split[0].equals("stats")) {
+                if(split.length == 2){
+                    try {
+                        List<Critter> a = Critter.getInstances(split[1]);
+                        Critter temp = (Critter) Class.forName(myPackage + "." + split[1]).newInstance();
+                        temp.runStats(a);
+                    } catch (InstantiationException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else{
+                System.out.println("invalid command: " + input);
+            }
+
 
 
 
