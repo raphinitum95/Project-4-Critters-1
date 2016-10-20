@@ -99,6 +99,15 @@ public abstract class Critter {
 	}
 
 	protected final void reproduce(Critter offspring, int direction) {
+		if (this.energy < Params.min_reproduce_energy){
+			return;
+		}
+		offspring.energy = this.energy / 2;
+		this.energy = ((this.energy / 2) + (this.energy % 2));
+		offspring.x_coord = this.x_coord;
+		offspring.y_coord = this.y_coord;
+		offspring.move(direction, 1);
+		babies.add(offspring);
 	}
 
 	private static void removeDead(){
