@@ -71,8 +71,6 @@ public class Main {
 
         System.out.println("GLHF");
 
-        Critter.displayWorld();
-
         /* Write your code above */
         System.out.flush();
 
