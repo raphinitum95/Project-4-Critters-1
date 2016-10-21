@@ -99,10 +99,8 @@ public abstract class Critter {
 			}
 		}
 
-		if(x_coord < 0) x_coord += Params.world_width;
-		if(x_coord > Params.world_width - 1) x_coord -= Params.world_width;
-		if(y_coord < 0) y_coord += Params.world_height;
-		if(y_coord > Params.world_height - 1) y_coord -= Params.world_height;
+		x_coord = (x_coord + Params.world_width) % Params.world_width;
+		y_coord = (y_coord + Params.world_height) % Params.world_height;
 		grid[x_coord][y_coord]++;
 
 	}
@@ -313,7 +311,7 @@ public abstract class Critter {
 		world = new String[Params.world_width + 2][Params.world_height];
 		displayRow();
 		for(Critter a: population){
-			world[a.x_coord][a.y_coord] = a.toString();
+			world[a.x_coord + 1][a.y_coord] = a.toString();
 		}
 		for(int i = 0; i < Params.world_height; i++){
 			world[0][i] = "|";
