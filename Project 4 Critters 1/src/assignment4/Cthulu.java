@@ -1,4 +1,13 @@
 package assignment4;
+/* CRITTERS <MyClass.java>
+ * EE422C Project 4 submission by Oct. 20, 2016
+ * Raphael De Los Santos
+ * rd23353
+ * JohnnyAngel Rojas
+ * jr52483
+ * Slip days used: <0>
+ * Fall 2016
+ */
 
 	/* Possibly the most dangerous critter, they are predators constantly on the search for a meal.
 	They are always on the move and can either run when searching, or walk when following prey in their

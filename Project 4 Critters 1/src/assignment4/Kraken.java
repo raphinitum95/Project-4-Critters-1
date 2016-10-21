@@ -1,4 +1,13 @@
 package assignment4;
+/* CRITTERS <MyClass.java>
+ * EE422C Project 4 submission by Oct. 20, 2016
+ * Raphael De Los Santos
+ * rd23353
+ * JohnnyAngel Rojas
+ * jr52483
+ * Slip days used: <0>
+ * Fall 2016
+ */
 
 	/* The Kraken is a powerful and cunning predator. The only move when attempting to pounce on prey
 	and are willing to both walk or run depending on the prey's distance. They fear no Critter and will
