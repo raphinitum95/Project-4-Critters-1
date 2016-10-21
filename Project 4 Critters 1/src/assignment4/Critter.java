@@ -1,16 +1,13 @@
-/* CRITTERS Critter.java
- * EE422C Project 4 submission by
- * Replace <...> with your actual data.
- * <Student1 Name>
- * <Student1 EID>
- * <Student1 5-digit Unique No.>
- * <Student2 Name>
- * <Student2 EID>
- * <Student2 5-digit Unique No.>
+package assignment4;
+/* CRITTERS <MyClass.java>
+ * EE422C Project 4 submission by Oct. 20, 2016
+ * Raphael De Los Santos
+ * rd23353
+ * JohnnyAngel Rojas
+ * jr52483
  * Slip days used: <0>
  * Fall 2016
  */
-package assignment4;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -99,10 +96,8 @@ public abstract class Critter {
 			}
 		}
 
-		if(x_coord < 0) x_coord += Params.world_width;
-		if(x_coord > Params.world_width - 1) x_coord -= Params.world_width;
-		if(y_coord < 0) y_coord += Params.world_height;
-		if(y_coord > Params.world_height - 1) y_coord -= Params.world_height;
+		x_coord = (x_coord + Params.world_width) % Params.world_width;
+		y_coord = (y_coord + Params.world_height) % Params.world_height;
 		grid[x_coord][y_coord]++;
 
 	}
@@ -172,11 +167,19 @@ public abstract class Critter {
 	 * @throws InvalidCritterException
 	 */
 	public static List<Critter> getInstances(String critter_class_name) {
+<<<<<<< HEAD
 		try {
 			List<Critter> instances = new ArrayList<>();
 			Class c = Class.forName(myPackage + "." + critter_class_name);
 			for(Critter a: population){
 				if(c.getClass() instanceof a){
+=======
+		List<Critter> instances = new ArrayList<>();
+		try {
+			Critter myCrit = (Critter) Class.forName(myPackage + "." + critter_class_name).newInstance();
+			for(Critter a: population){
+				if(myCrit.getClass().isInstance(a)){
+>>>>>>> d6b85ff8e186e89e1a0eac0ff6a5b0abbab84fb3
 					instances.add(a);
 				}
 			}
@@ -322,7 +325,7 @@ public abstract class Critter {
 		world = new String[Params.world_width + 2][Params.world_height];
 		displayRow();
 		for(Critter a: population){
-			world[a.x_coord][a.y_coord] = a.toString();
+			world[a.x_coord + 1][a.y_coord] = a.toString();
 		}
 		for(int i = 0; i < Params.world_height; i++){
 			world[0][i] = "|";
