@@ -54,11 +54,13 @@ public abstract class Critter {
 	private int x_coord;
 	private int y_coord;
 
+	protected int getX_coord(){ return  x_coord;}
+	protected int getY_coord(){ return y_coord;}
+
 	protected final void walk(int direction) {
 		if(!moved) {
 			grid[x_coord][y_coord]--;
 			move(direction, 1);
-			grid[x_coord][y_coord]++;
 		}
 		energy = energy - Params.walk_energy_cost;
 		moved = true;
@@ -68,7 +70,6 @@ public abstract class Critter {
 		if(!moved) {
 			grid[x_coord][y_coord]--;
 			move(direction, 2);
-			grid[x_coord][y_coord]++;
 		}
 		energy = energy - Params.run_energy_cost;
 		moved = true;
@@ -102,6 +103,7 @@ public abstract class Critter {
 		if(x_coord > Params.world_width - 1) x_coord -= Params.world_width;
 		if(y_coord < 0) y_coord += Params.world_height;
 		if(y_coord > Params.world_height - 1) y_coord -= Params.world_height;
+		grid[x_coord][y_coord]++;
 
 	}
 
@@ -124,6 +126,10 @@ public abstract class Critter {
 				population.remove(crit);
 			}
 		}
+	}
+
+	public int [][] getGrid(){
+		return grid;
 	}
 
 
