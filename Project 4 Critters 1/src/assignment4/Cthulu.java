@@ -1,11 +1,14 @@
 package assignment4;
-/* CRITTERS <MyClass.java>
- * EE422C Project 4 submission by Oct. 20, 2016
- * Raphael De Los Santos
- * rd23353
- * JohnnyAngel Rojas
- * jr52483
- * Slip days used: <0>
+/* CRITTERS Cthulu.java
+ * EE422C Project 4 submission by
+ * Replace <...> with your actual data.
+ * <Raphael De Los Santos>
+ * <rd23353>
+ * <16480>
+ * <JohnnyAngel Rojas>
+ * <jr52483>
+ * <16445>
+ * Slip days used: <1>
  * Fall 2016
  */
 
@@ -14,20 +17,32 @@ package assignment4;
 	immediate vicinity. They rarely reproduce unless they have a massive amount of energy. */
 
 public class Cthulu extends Critter {
-
+	/**
+	 * @return a character/string that represents Cthulu on the world map
+	 */
 	@Override
 	public String toString() { return "☣"; }
 
 	private int direction;
 	private boolean creep;
 
+	/**
+	 * The constructor initializes the flag for whether Cthulu is following someone, and also initializes
+	 * the direction and movement of Cthulu
+	 */
 	public Cthulu() {
 		creep = false;
 		follow();
 	}
 
+	/**
+	 * @param for this version of fight the string will not be used
+	 * @return true because Cthulu seeks utter chaos and thrives on killing
+	 */
 	public boolean fight(String ruthless) { return true; }
-
+	/**
+	 * implement search and chase mechanic
+	 */
 	public void follow (){
 		int [][] grid = getGrid();
 		int x = getX_coord() + Params.world_width;
@@ -63,6 +78,10 @@ public class Cthulu extends Critter {
 		}
 	}
 
+	/**
+	 * detemine the movement and direction of Cthulu's movements
+	 * also set requirements for children
+	 */
 	@Override
 	public void doTimeStep() {
 		if (creep == true){

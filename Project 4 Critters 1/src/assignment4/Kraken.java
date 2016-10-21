@@ -1,32 +1,45 @@
 package assignment4;
-/* CRITTERS <MyClass.java>
- * EE422C Project 4 submission by Oct. 20, 2016
- * Raphael De Los Santos
- * rd23353
- * JohnnyAngel Rojas
- * jr52483
- * Slip days used: <0>
+/* CRITTERS Kraken.java
+ * EE422C Project 4 submission by
+ * Replace <...> with your actual data.
+ * <Raphael De Los Santos>
+ * <rd23353>
+ * <16480>
+ * <JohnnyAngel Rojas>
+ * <jr52483>
+ * <16445>
+ * Slip days used: <1>
  * Fall 2016
  */
 
-	/* The Kraken is a powerful and cunning predator. The only move when attempting to pounce on prey
+	/* The Kraken is a patient and deadly. They only move when attempting to pounce on prey
 	and are willing to both walk or run depending on the prey's distance. They fear no Critter and will
 	attack anything they see. Although the Kraken does reproduce, it's not common because it will likely
 	just eat it's child. */
 
 public class Kraken extends Critter {
-
+	/**
+	 * @return a character/string that represents Kraken on the world map
+	 */
 	@Override
 	public String toString() { return "§"; }
 
 	private int direction;
 	private boolean lingering;
 	private boolean far;
-
+	/**
+	 * The constructor initializes the flag for whether Kraken is following someone, and also initializes
+	 * the direction and movement of Kraken
+	 */
 	public Kraken() {
 		lingering = false;
 		Pounce();
 	}
+	/**
+	 * @param for this version of fight the string will not be used
+	 * @return true if the Kraken ever encounter Algae, and also true for all
+	 * critters unless the Kraken is low on energy.
+	 */
 
 	public boolean fight(String killer) {
 		if (killer.equals("@")){
@@ -40,6 +53,10 @@ public class Kraken extends Critter {
 			return true;
 		}
 	}
+
+	/**
+	 * implement search and chase mechanic
+	 */
 
 	public void Pounce (){
 		int[][] grid = getGrid();
@@ -116,6 +133,11 @@ public class Kraken extends Critter {
 			lingering = true;
 		}
 	}
+
+	/**
+	 * detemine the movement and direction of Kraken's movements
+	 * also set requirements for children
+	 */
 
 	@Override
 	public void doTimeStep(){

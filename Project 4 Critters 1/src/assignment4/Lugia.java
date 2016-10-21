@@ -1,11 +1,14 @@
 package assignment4;
-/* CRITTERS <MyClass.java>
- * EE422C Project 4 submission by Oct. 20, 2016
- * Raphael De Los Santos
- * rd23353
- * JohnnyAngel Rojas
- * jr52483
- * Slip days used: <0>
+/* CRITTERS Lugia.java
+ * EE422C Project 4 submission by
+ * Replace <...> with your actual data.
+ * <Raphael De Los Santos>
+ * <rd23353>
+ * <16480>
+ * <JohnnyAngel Rojas>
+ * <jr52483>
+ * <16445>
+ * Slip days used: <1>
  * Fall 2016
  */
 
@@ -16,25 +19,35 @@ package assignment4;
 	energy. */
 
 public class Lugia extends Critter {
-
+	/**
+	 * @return a character/string that represents Lugia on the world map
+	 */
 	@Override
 	public String toString() { return "☬"; }
 
 	private int direction;
 	private boolean mood;
-
+	/**
+	 * The constructor initializes the direction and movement of Cthulu
+	 */
 	public Lugia() {
 		direction = Critter.getRandomInt(8);
 	}
-
+	/**
+	 * @param for this version of fight the string will not be used
+	 * @return true if only Lugia encounters Algae or Cthulu, otherwise false
+	 */
 	public boolean fight(String depends) {
 		if (depends.equals("@") || depends.equals("☣")){
 			return (true);
 		}
-		run(getRandomInt(8));
 		return (false);
 	}
 
+	/**
+	 * detemine the movement and direction of Lugia's movements
+	 * also set requirements for children
+	 */
 	@Override
 	public void doTimeStep() {
 		if (getEnergy() > 100){

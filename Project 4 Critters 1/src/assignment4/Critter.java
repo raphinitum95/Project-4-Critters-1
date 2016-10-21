@@ -1,11 +1,14 @@
 package assignment4;
-/* CRITTERS <MyClass.java>
- * EE422C Project 4 submission by Oct. 20, 2016
- * Raphael De Los Santos
- * rd23353
- * JohnnyAngel Rojas
- * jr52483
- * Slip days used: <0>
+/* CRITTERS Critter.java
+ * EE422C Project 4 submission by
+ * Replace <...> with your actual data.
+ * <Raphael De Los Santos>
+ * <rd23353>
+ * <16480>
+ * <JohnnyAngel Rojas>
+ * <jr52483>
+ * <16445>
+ * Slip days used: <1>
  * Fall 2016
  */
 
@@ -167,19 +170,11 @@ public abstract class Critter {
 	 * @throws InvalidCritterException
 	 */
 	public static List<Critter> getInstances(String critter_class_name) {
-<<<<<<< HEAD
-		try {
-			List<Critter> instances = new ArrayList<>();
-			Class c = Class.forName(myPackage + "." + critter_class_name);
-			for(Critter a: population){
-				if(c.getClass() instanceof a){
-=======
 		List<Critter> instances = new ArrayList<>();
 		try {
 			Critter myCrit = (Critter) Class.forName(myPackage + "." + critter_class_name).newInstance();
 			for(Critter a: population){
 				if(myCrit.getClass().isInstance(a)){
->>>>>>> d6b85ff8e186e89e1a0eac0ff6a5b0abbab84fb3
 					instances.add(a);
 				}
 			}
@@ -191,6 +186,7 @@ public abstract class Critter {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+		return instances;
 	}
 
 	/**
@@ -273,8 +269,15 @@ public abstract class Critter {
 	 * Clear the world of all critters, dead and alive
 	 */
 	public static void clearWorld() {
+		population.clear();
+		babies.clear();
 	}
 
+
+	/**
+	 * calls the doTimeStep for all of the critters that are alive
+	 * then determines if the any critters need to fight
+	 */
 	public static void worldTimeStep() {
 		for(Critter a: population) {
 			a.moved = false;
@@ -302,6 +305,11 @@ public abstract class Critter {
 
 	}
 
+	/**
+	 * simulates a fight between two critters
+	 * @param two Critters
+	 * it rolls the dice and determines who wins and who dies
+	 */
 	private static void simulateFight(Critter a, Critter b){
 		int a_roll = 0;
 		int b_roll = 0;
@@ -344,6 +352,9 @@ public abstract class Critter {
 
 	}
 
+	/**
+	 * Prints out the "+" and the "-" for the top and bottom row of the world
+	 */
 	private static void displayRow(){
 		System.out.print("+");
 		for(int i = 0; i < Params.world_width; i++) System.out.print("-");
