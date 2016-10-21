@@ -54,13 +54,15 @@ public abstract class Critter {
 	private int x_coord;
 	private int y_coord;
 
+	protected int getX_coord(){ return  x_coord;}
+	protected int getY_coord(){ return y_coord;}
+
 	protected final void walk(int direction) {
 		if(!moved) {
 			grid[x_coord][y_coord]--;
 			move(direction, 1);
-			grid[x_coord][y_coord]++;
 		}
-		energy = energy - Params.walk_energy_cost;
+		this.energy = this.energy - Params.walk_energy_cost;
 		moved = true;
 	}
 
@@ -68,9 +70,8 @@ public abstract class Critter {
 		if(!moved) {
 			grid[x_coord][y_coord]--;
 			move(direction, 2);
-			grid[x_coord][y_coord]++;
 		}
-		energy = energy - Params.run_energy_cost;
+		this.energy = this.energy - Params.run_energy_cost;
 		moved = true;
 	}
 
@@ -102,6 +103,7 @@ public abstract class Critter {
 		if(x_coord > Params.world_width - 1) x_coord -= Params.world_width;
 		if(y_coord < 0) y_coord += Params.world_height;
 		if(y_coord > Params.world_height - 1) y_coord -= Params.world_height;
+		grid[x_coord][y_coord]++;
 
 	}
 
@@ -118,12 +120,18 @@ public abstract class Critter {
 	}
 
 	private static void removeDead(){
-		for(Critter crit: population){
+		for(int i = 0; i < population.size(); i++){
+			Critter crit = population.get(i);
 			crit.energy = crit.energy - Params.rest_energy_cost;
 			if(crit.energy < 1){
 				population.remove(crit);
 			}
+			grid[crit.x_coord][crit.y_coord]--;
 		}
+	}
+
+	public int [][] getGrid(){
+		return grid;
 	}
 
 
