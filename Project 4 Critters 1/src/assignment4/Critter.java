@@ -27,7 +27,7 @@ public abstract class Critter {
 	private	static List<Critter> population = new java.util.ArrayList<Critter>();
 	private static List<Critter> babies = new java.util.ArrayList<Critter>();
 	private boolean moved = false; //check this functionallity later
-	private static int [][] grid = new int[Params.world_width][Params.world_height];
+	private static int [][] grid;
 	private static String [][] world;
 
 	// Gets the package name. This assumes that Critter and its subclasses are all in the same package.
@@ -132,6 +132,10 @@ public abstract class Critter {
 		return grid;
 	}
 
+	public static void setGrid(){
+		grid = new int[Params.world_width][Params.world_height];
+	}
+
 
 	public abstract void doTimeStep();
 	public abstract boolean fight(String oponent);
@@ -152,6 +156,8 @@ public abstract class Critter {
 			temp.energy = Params.start_energy;
 			temp.x_coord = getRandomInt(Params.world_width);
 			temp.y_coord = getRandomInt(Params.world_height);
+			int a = Params.world_width;
+			int b = Params.world_height;
 			temp.grid[temp.x_coord][temp.y_coord]++;
 			population.add(temp);
 		} catch (InstantiationException e) {
@@ -279,6 +285,7 @@ public abstract class Critter {
 	 * then determines if the any critters need to fight
 	 */
 	public static void worldTimeStep() {
+		removeDead();
 		for(Critter a: population) {
 			a.moved = false;
 			a.doTimeStep();
@@ -316,6 +323,9 @@ public abstract class Critter {
 		boolean first = a.fight(b.toString());
 		boolean second = b.fight(a.toString());
 		if (a.x_coord == b.x_coord && a.y_coord == b.y_coord) {
+			if(a.energy <= 0 || b.energy <= 0){
+				return;
+			}
 			if (first) a_roll = a.getRandomInt(a.energy);
 			if (second) b_roll = b.getRandomInt(b.energy);
 			if (a_roll >= b_roll) {

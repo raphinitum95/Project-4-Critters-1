@@ -11,6 +11,8 @@
  * Fall 2016
  */
 package assignment4; // cannot be in default package
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -43,7 +45,7 @@ public class Main {
      * @param args args can be empty.  If not empty, provide two parameters -- the first is a file name,
      * and the second is test (for test output, where all output to be directed to a String), or nothing.
      */
-    public static void main(String[] args) throws InvalidCritterException {
+    public static void main(String[] args) {
         if (args.length != 0) {
             try {
                 inputFile = args[0];
@@ -72,7 +74,7 @@ public class Main {
         /* Do not alter the code above for your submission. */
         /* Write your code below. */
 
-        System.out.println("GLHF");
+        Critter.setGrid();
 
         System.out.print("critters> ");
 
@@ -89,7 +91,7 @@ public class Main {
                     Critter.displayWorld();
                 }
                 else{
-                    System.out.println("invalid command: " + input);
+                    System.out.println("error processing: " + input);
                 }
             }
 
@@ -119,13 +121,17 @@ public class Main {
                         System.out.println("error processing: " + input);
                     }
                 } else{
-                    System.out.println("invalid command: " + input);
+                    System.out.println("error processing: " + input);
                 }
             }
 
             else if(split[0].equals("make")){
                 if(split.length == 2){
-                    Critter.makeCritter(split[1]);
+                    try {
+                        Critter.makeCritter(split[1]);
+                    } catch (InvalidCritterException e) {
+                        e.printStackTrace();
+                    }
                 }
                 else if(split.length == 3){
                     try{
@@ -135,26 +141,41 @@ public class Main {
                         }
                     } catch (NumberFormatException e){
                         System.out.println("error processing: " + input);
+                    } catch (InvalidCritterException e) {
+                        e.printStackTrace();
                     }
                 } else{
-                    System.out.println("invalid command: " + input);
+                    System.out.println("error processing: " + input);
                 }
 
             }
 
             else if(split[0].equals("stats")) {
                 if(split.length == 2){
+                    Object crit = null;
+                    List<Critter> a = null;
                     try {
-                        List<Critter> a = Critter.getInstances(split[1]);
-                        Critter temp = (Critter) Class.forName(myPackage + "." + split[1]).newInstance();
-                        temp.runStats(a);
+                        a = Critter.getInstances(split[1]);
+                        crit = Class.forName(myPackage + "." + split[1]).newInstance();
+                        Class[] cArg = new Class[1];
+                        cArg[0] = List.class;
+                        Method mthd = crit.getClass().getDeclaredMethod("runStats", cArg);
+                        mthd.invoke(crit, a);
                     } catch (InstantiationException e) {
                         e.printStackTrace();
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
+                    } catch (NoSuchMethodException e) {
+                        Critter temp = (Critter) crit;
+                        temp.runStats(a);
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
                     }
+                }
+                else{
+                    System.out.println("error processing: " + input);
                 }
             } else{
                 System.out.println("invalid command: " + input);
