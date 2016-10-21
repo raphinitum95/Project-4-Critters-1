@@ -146,7 +146,6 @@ public class Main {
                 if(split.length == 2){
                     try {
                         List<Critter> a = Critter.getInstances(split[1]);
-                        System.out.println(a.toString());
                         Critter temp = (Critter) Class.forName(myPackage + "." + split[1]).newInstance();
                         temp.runStats(a);
                     } catch (InstantiationException e) {
