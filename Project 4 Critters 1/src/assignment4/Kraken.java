@@ -34,72 +34,72 @@ public class Kraken extends Critter {
 
 	public void Pounce (){
 		int[][] grid = getGrid();
-		int x = getX_coord();
-		int y = getY_coord();
+		int x = getX_coord() + Params.world_width;
+		int y = getY_coord() + Params.world_height;
 		lingering = false;
-		if(grid[x + 1][y] > 0) {
+		if(grid[(x + 1) % Params.world_width][y % Params.world_height] > 0) {
 			direction = 0;
 			far = false;
 		}
-		if(grid[x + 1][y - 1] > 0) {
+		if(grid[(x + 1) % Params.world_width][(y + 1) % Params.world_height] > 0) {
 			direction = 1;
 			far = false;
 		}
-		if(grid[x][y - 1] > 0) {
+		if(grid[x % Params.world_width][(y - 1) % Params.world_height] > 0) {
 			direction = 2;
 			far = false;
 		}
-		if(grid[x - 1][y - 1] > 0) {
+		if(grid[(x - 1) % Params.world_width][(y - 1) % Params.world_height] > 0) {
 			direction = 3;
 			far = false;
 		}
-		if(grid[x - 1][y] > 0) {
+		if(grid[(x - 1) % Params.world_width][y % Params.world_height] > 0) {
 			direction = 4;
 			far = false;
 		}
-		if(grid[x - 1][y + 1] > 0) {
+		if(grid[(x - 1) % Params.world_width][(y + 1) % Params.world_height] > 0) {
 			direction = 5;
 			far = false;
 		}
-		if(grid[x][y + 1] > 0) {
+		if(grid[x % Params.world_width][(y + 1) % Params.world_height] > 0) {
 			direction = 6;
 			far = false;
 		}
-		if(grid[x + 1][y + 1] > 0) {
+		if(grid[(x + 1) % Params.world_width][(y + 1) % Params.world_height] > 0) {
 			direction = 7;
 			far = false;
 		}
 
 		//deciding to run
-		if(grid[x + 2][y] > 0) {
+		if(grid[(x + 2) % Params.world_width][y % Params.world_height] > 0) {
 			direction = 0;
 			far = true;
 		}
-		if(grid[x + 2][y - 2] > 0) {
+		if(grid[(x + 2) % Params.world_width][(y - 2) %  Params.world_height] > 0) {
 			direction = 1;
 			far = true;
 		}
-		if(grid[x][y - 2] > 0) {
+		if(grid[x % Params.world_width][(y - 2) %  Params.world_height] > 0) {
 			direction = 2;
 			far = true;
 		}
-		if(grid[x - 2][y - 2] > 0) {
+		if(grid[(x - 2) % Params.world_width][(y - 2) %  Params.world_height] > 0) {
 			direction = 3;
 			far = true;
 		}
-		if(grid[x - 2][y] > 0) {
+		if(grid[(x - 2) % Params.world_width][y % Params.world_height] > 0) {
 			direction = 4;
 			far = true;
 		}
-		if(grid[x - 2][y + 2] > 0) {
+		if(grid[(x - 2) % Params.world_width][(y + 2) % Params.world_height] > 0) {
 			direction = 5;
 			far = true;
 		}
-		if(grid[x][y + 2] > 0) {
+		if(grid[x % Params.world_width][(y + 2) % Params.world_height] > 0) {
 			direction = 6;
 			far = true;
 		}
-		if(grid[x + 2][y + 2] > 0) {
+		if(grid[(x + 2) % Params.world_width][(y + 2) % Params.world_height] > 0) {
 			direction = 7;
 			far = true;
 		}

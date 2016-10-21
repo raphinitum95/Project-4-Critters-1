@@ -62,7 +62,7 @@ public abstract class Critter {
 			grid[x_coord][y_coord]--;
 			move(direction, 1);
 		}
-		energy = energy - Params.walk_energy_cost;
+		this.energy = this.energy - Params.walk_energy_cost;
 		moved = true;
 	}
 
@@ -71,7 +71,7 @@ public abstract class Critter {
 			grid[x_coord][y_coord]--;
 			move(direction, 2);
 		}
-		energy = energy - Params.run_energy_cost;
+		this.energy = this.energy - Params.run_energy_cost;
 		moved = true;
 	}
 
@@ -120,11 +120,13 @@ public abstract class Critter {
 	}
 
 	private static void removeDead(){
-		for(Critter crit: population){
+		for(int i = 0; i < population.size(); i++){
+			Critter crit = population.get(i);
 			crit.energy = crit.energy - Params.rest_energy_cost;
 			if(crit.energy < 1){
 				population.remove(crit);
 			}
+			grid[crit.x_coord][crit.y_coord]--;
 		}
 	}
 
