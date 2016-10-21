@@ -172,13 +172,22 @@ public abstract class Critter {
 	 * @throws InvalidCritterException
 	 */
 	public static List<Critter> getInstances(String critter_class_name) {
-		List<Critter> instances = new ArrayList<>();
-		for(Critter a: population){
-			if(critter_class_name.getClass().isInstance(a)){
-				instances.add(a);
+		try {
+			List<Critter> instances = new ArrayList<>();
+			Class c = Class.forName(myPackage + "." + critter_class_name);
+			for(Critter a: population){
+				if(c.getClass() instanceof a){
+					instances.add(a);
+				}
 			}
+			return (List) instances;
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
-		return (List) instances;
 	}
 
 	/**
